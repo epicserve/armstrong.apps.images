@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.views.generic import DetailView
+from sorl.thumbnail.admin import AdminImageMixin
 
 from armstrong.core.arm_content.admin import fieldsets
 
@@ -8,7 +9,8 @@ from .models import Image, ImageSet, ImageSetElement
 from .views import BrowseImages, BrowseImageSets, UploadImage
 
 
-class ImageAdmin(admin.ModelAdmin):
+class ImageAdmin(AdminImageMixin, admin.ModelAdmin):
+    list_display = ('_admin_thumbnail', 'pub_date', 'pub_status', 'access')
     fieldsets = (
         (None, {
             'fields': ('title', 'slug', 'image', 'summary'),
