@@ -7,6 +7,7 @@ from armstrong.core.arm_content.admin import fieldsets
 from .models import Image, ImageSet, ImageSetElement
 from .views import BrowseImages, BrowseImageSets, UploadImage
 
+
 class ImageAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
@@ -35,10 +36,12 @@ class ImageAdmin(admin.ModelAdmin):
         )
         return browse_urls + urls
 
+
 class ImageSetElementInline(admin.TabularInline):
     model = ImageSetElement
     raw_id_fields = ('image', )
-        
+
+
 class ImageSetAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
@@ -49,9 +52,9 @@ class ImageSetAdmin(admin.ModelAdmin):
         fieldsets.PUBLICATION,
         fieldsets.AUTHORS,
     )
-    
+
     inlines = (ImageSetElementInline,)
-    
+
     def get_urls(self):
         urls = super(ImageSetAdmin, self).get_urls()
         browse_urls = patterns('',
@@ -60,6 +63,6 @@ class ImageSetAdmin(admin.ModelAdmin):
                 name='imagesets_admin_browse'),
         )
         return browse_urls + urls
-        
+
 admin.site.register(Image, ImageAdmin)
 admin.site.register(ImageSet, ImageSetAdmin)
