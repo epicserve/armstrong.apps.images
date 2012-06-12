@@ -10,7 +10,7 @@ from .views import BrowseImages, BrowseImageSets, UploadImage
 
 
 class ImageAdmin(AdminImageMixin, admin.ModelAdmin):
-    list_display = ('_admin_thumbnail', 'pub_date', 'pub_status', 'access')
+    list_display = ('_admin_thumbnail', 'title', 'pub_date', 'pub_status', 'access')
     fieldsets = (
         (None, {
             'fields': ('title', 'slug', 'image', 'summary'),
